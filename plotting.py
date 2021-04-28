@@ -3,12 +3,20 @@ Create the required plots.
 
 To use
 ------------------------------------------------------------------------
-	> python3 plotting.py sample_output.csv sample_plot.png
+
+	> python3 plotting.py in1.csv in2.csv in3.csv output_path.png
+
+	where
+
+		in_1 : str : .csv file for learning problem 1
+		in_2 : str : .csv file for learning problem 2
+		in_3 : str : .csv file for learning problem 3
+		output_path : str : .png image file to save the plot to
 
 	or within another python file
 
 	from plotting import errors_vs_epochs
-	errors_vs_epochs('sample_output.csv', 'sample_plot.png')
+	errors_vs_epochs('in1.csv', 'in2.csv', 'in3.csv', 'output_path.png')
 
 Notes
 ------------------------------------------------------------------------
