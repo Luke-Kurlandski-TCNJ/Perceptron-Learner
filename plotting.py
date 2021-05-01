@@ -4,16 +4,18 @@ Create the required plots.
 To use
 ------------------------------------------------------------------------
 
+	via the command line:
+
 	> python3 plotting.py in1.csv in2.csv in3.csv output_path.png
 
 	where
 
-		in_1 : str : .csv file for learning problem 1
-		in_2 : str : .csv file for learning problem 2
-		in_3 : str : .csv file for learning problem 3
+		in_1 : str : .csv file for learning problem 1: iris setosa
+		in_2 : str : .csv file for learning problem 2: iris versicolor
+		in_3 : str : .csv file for learning problem 3: iris virginica
 		output_path : str : .png image file to save the plot to
 
-	or within another python file
+	or via python code:
 
 	from plotting import errors_vs_epochs
 	errors_vs_epochs('in1.csv', 'in2.csv', 'in3.csv', 'output_path.png')
@@ -25,7 +27,10 @@ Notes
 
 import sys
 
-import pandas as pd
+try:
+	import pandas as pd
+except ModuleNotFoundError:
+	print("Warning: 'pandas' library not installed for plotting.py")
 
 def errors_vs_epochs(in1, in2, in3, output_path):
 	"""
@@ -33,9 +38,9 @@ def errors_vs_epochs(in1, in2, in3, output_path):
 
 	Arguments
 	--------------------------------------------------------------------
-		in_1 : str : .csv file for learning problem 1
-		in_2 : str : .csv file for learning problem 2
-		in_3 : str : .csv file for learning problem 3
+		in_1 : str : .csv file for learning problem 1: iris setosa
+		in_2 : str : .csv file for learning problem 2: iris versicolor
+		in_3 : str : .csv file for learning problem 3: iris virginica
 		output_path : str : .png image file to save the plot to
 
 	Notes
@@ -47,18 +52,17 @@ def errors_vs_epochs(in1, in2, in3, output_path):
 	df2 = pd.read_csv(in2, usecols=['epoch','errors'])
 	df3 = pd.read_csv(in3, usecols=['epoch','errors'])
 
-	df1 = df1.rename(columns={"errors": "errors LP 1"})
-	df2 = df2.rename(columns={"errors": "errors LP 2"})
-	df3 = df3.rename(columns={"errors": "errors LP 3"})
+	df1 = df1.rename(columns={"errors": "errors LP 1: iris setosa"})
+	df2 = df2.rename(columns={"errors": "errors LP 2: iris versicolor"})
+	df3 = df3.rename(columns={"errors": "errors LP 3: iris virginica"})
 
 	df = pd.merge(pd.merge(df1, df2, on='epoch'), df3, on='epoch')
 
-	print(df)
-
-	ax = df.plot.line(x='epoch', y=['errors LP 1','errors LP 2','errors LP 3'])
+	ax = df.plot.line(x='epoch', y=['errors LP 1: iris setos', 
+		'errors LP 2: iris versicolor','errors LP 3: iris virginica'])
 	ax.set_xlabel("epoch")
 	ax.set_ylabel("# errors")
-	ax.figure.savefig('sample_plot.png')
+	ax.figure.savefig(output_path)
 
 def main():
 	if len(sys.argv) < 4:

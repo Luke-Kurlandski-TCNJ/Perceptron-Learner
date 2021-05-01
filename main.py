@@ -2,6 +2,8 @@
 Run the perceptron learning tasks and the learning problems.
 """
 
+import random
+
 from perceptron import Perceptron
 from utils import process_iris_data
 
@@ -46,7 +48,15 @@ def task4():
 	Setup learning environment as specified for task 4.
 	"""
 	
-	pass
+	weights = [0,0,0,0]
+	data = process_iris_data(path='iris.data')
+	task = 4
+
+	random.shuffle(data)
+	learning_problems(weights=weights, data=data, task=task)
+
+	random.shuffle(data)
+	learning_problems(weights=weights, data=data, task=task)
 
 def task3():
 	"""
