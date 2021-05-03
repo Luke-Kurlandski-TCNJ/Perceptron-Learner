@@ -62,27 +62,80 @@ def task3():
 	"""
 	Setup learning environment as specified for task 3.
 	"""
-	
-	pass
+	import csv 
+
+	data_flower = csv.DictReader(open('iris.csv', 'r'))
+	dict_lists = []
+
+	for line in data_flower:
+		dict_lists.append(line)
+
+	##task 3, part 1, dataset 1
+	t3_1_1 = Perceptron(name = 'Iris-setosa', weights=[1,1,1,1,1])
+	t3_1_1.fit(dict_lists, path=f'D3_1_iris_setosa_stats.csv')
+
+	t3_1_2 = Perceptron(name = 'Iris-versicolor',weights=[1,1,1,1,1])
+	t3_1_2.fit(dict_lists, path=f'D3_1_iris_versicolor_stats.csv')
+
+	t_3_3 = Perceptron(name = 'Iris-virginica',weights=[1,1,1,1,1])
+	t_3_3.fit(dict_lists, path=f'D3_1_iris_virginica_stats.csv')
+
+	##task 3, part 2
+	t3_2_1 = Perceptron(name = 'Iris-setosa', weights=[.1,.2,.3,.4,.5])
+	t3_2_1.fit(dict_lists, path=f'D3_2_iris_setosa_stats.csv')
+
+	t3_2_2 = Perceptron(name = 'Iris-versicolor',weights=[.1,.2,.3,.4,.5])
+	t3_2_2.fit(dict_lists, path=f'D3_2_iris_versicolor_stats.csv')
+
+	t_2_3 = Perceptron(name = 'Iris-virginica',weights=[.1,.2,.3,.4,.5])
+	t_2_3.fit(dict_lists, path=f'D3_2_iris_virginica_stats.csv')
+
+	import random
+	random_weights = []
+	for i in range(5):
+    	
+		random_weights.append(random.uniform(0.0,1.0))
+
+	t3_3_1 = Perceptron(name = 'Iris-setosa', weights=random_weights)
+	t3_3_1.fit(dict_lists,path=f'D3_3_iris_setosa_stats.csv')
+
+	t3_3_2 = Perceptron(name = 'Iris-versicolor',weights=random_weights)
+	t3_3_2.fit(dict_lists, path=f'D3_3_iris_versicolor_stats.csv')
+
+	t_3_3 = Perceptron(name = 'Iris-virginica',weights=random_weights)
+	t_3_3.fit(dict_lists, path=f'D3_3_iris_virginica_stats.csv')	
+
+	pass 
 
 def task2():
 	"""
 	Setup learning environment as specified for task 2.
 	"""
-	with open('iris.data', 'r') as sampleData:
-		data = sampleData.readlines()
-	#created 3 arrays of data for petals 
-	#cannot implement further until function declarations of perceptrons are created
-	iris_setosa = data[1:50]
-	iris_versicolor = data[50:100]
-	iris_virginica = data[100:150]
+	import csv 
+
+	data_flower = csv.DictReader(open('iris.csv', 'r'))
+	dict_lists = []
+
+	for line in data_flower:
+		dict_lists.append(line)
+
+	lp1 = Perceptron(name = 'Iris-setosa')
+	lp1.fit(dict_lists, path=f'D2_iris_setosa_stats.csv')
+
+	lp2 = Perceptron(name = 'Iris-versicolor')
+	lp2.fit(dict_lists, path=f'D2_iris_versicolor_stats.csv')
+
+	lp3 = Perceptron(name = 'Iris-virginica')
+	lp3.fit(dict_lists, path=f'D2_iris_virginica_stats.csv')
 
 	pass
+
 
 def main():
 	"""
 	
 	""" 
+	task2()
 	pass
 
 if __name__ == "__main__":

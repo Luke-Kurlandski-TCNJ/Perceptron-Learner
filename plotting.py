@@ -24,6 +24,7 @@ Notes
 ------------------------------------------------------------------------
 	Requires third party library pandas be installed.
 """
+import pandas as pd
 
 import sys
 
