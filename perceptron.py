@@ -33,7 +33,7 @@ class Perceptron:
 		if weights is not None:
 			self.weights = weights
 		else:
-			weights = [0,0,0,0,0]
+			self.weights = [0,0,0,0,0]
 
 	def fit(self, data, path = None):
 		"""
@@ -60,27 +60,27 @@ class Perceptron:
 		if path is None:
 			file = open(name, 'a', newline='')
 		else:
-			file = open(path+"/"+name, 'a', newline='')
+			file = open(path, 'a', newline='')
 		write = csv.writer(file)
 		write.writerow(["epoch", "error", "weights"])
-		
-		while error != 0:
+
+		while error != 0 and epoch < 1000:
 			epoch += 1
 			error = 0
-			for i in range(len(data)):
-				target = 1 if (self.targetClass == data[i]['class']) else -1
+			for dict in data:
+				target = 1 if (self.targetClass == dict['class']) else -1
 				x = [1]
-				for key in data[i].keys:
+				for key in dict.keys():
 					if key != "class":
-						x.append(data[i][key])
+						x.append(float(dict[key]))
 				diff = target - self.output(x)
-				if diff == 0:
-					continue
-				for i in range(len(self.weights)):
+				if diff != 0:
 					error += 1
+				for i in range(len(self.weights)):
 					delta = self.lr * diff * x[i]
 					self.weights[i] = self.weights[i] + delta 
-			write.writerow([epoch, error, self.weights])	
+			row = [epoch,error,self.weights]
+			write.writerow(row)	
 			 
 
 	def output(self, x):
@@ -95,11 +95,10 @@ class Perceptron:
 		----------------------------------------------------------------
 			z : int : sgn(<x, self.weights>), i.e., +1 or -1
 		"""
-		for i in range(self.weights):
+		sum = 0
+		for i in range(len(self.weights)):
 			sum += self.weights[i] * x[i]
-		
-		z = 1 if (sum > 0) else 0
-	
+		z = 1 if (sum > 0) else -1
 		return z
 
 	
