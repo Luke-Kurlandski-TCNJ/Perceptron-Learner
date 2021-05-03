@@ -5,6 +5,7 @@ Run the perceptron learning tasks and the learning problems.
 import random
 
 from perceptron import Perceptron
+from plotting import errors_vs_epochs
 from utils import process_iris_data
 
 def learning_problems(weights, data, task):
@@ -34,13 +35,13 @@ def learning_problems(weights, data, task):
 		Will produce three csv files containing the stats for this task.
 	"""
 
-	p = Perceptron(name='iris_setosa', weights=weights)
+	p = Perceptron(name='Iris-setosa', weights=weights)
 	p.fit(data=data, path=f'D{task}_iris_setosa_stats.csv')
 
-	p = Perceptron(name='iris_versicolor', weights=weights)
+	p = Perceptron(name='Iris-versicolor', weights=weights)
 	p.fit(data=data, path=f'D{task}_iris_versicolor_stats.csv')
 
-	p = Perceptron(name='iris_virginica', weights=weights)
+	p = Perceptron(name='Iris-virginica', weights=weights)
 	p.fit(data=data, path=f'D{task}_iris_virginica_stats.csv')
 
 def task4():
@@ -50,13 +51,12 @@ def task4():
 	
 	weights = [0,0,0,0,0]
 	data = process_iris_data(path='iris.data')
-	task = 4
 
 	random.shuffle(data)
-	learning_problems(weights=weights, data=data, task=task)
+	learning_problems(weights=weights, data=data, task=4.1)
 
 	random.shuffle(data)
-	learning_problems(weights=weights, data=data, task=task)
+	learning_problems(weights=weights, data=data, task=4.2)
 
 def task3():
 	"""
@@ -83,7 +83,8 @@ def main():
 	"""
 	
 	""" 
-	pass
+	
+	task4()
 
 if __name__ == "__main__":
 	main()

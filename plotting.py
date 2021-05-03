@@ -56,7 +56,7 @@ def errors_vs_epochs(in1, in2, in3, output_path):
 	df2 = df2.rename(columns={"error": "errors LP 2: iris versicolor"})
 	df3 = df3.rename(columns={"error": "errors LP 3: iris virginica"})
 
-	df = pd.merge(pd.merge(df1, df2, on='epoch'), df3, on='epoch')
+	df = pd.merge(pd.merge(df1, df2, on='epoch', how='outer'), df3, on='epoch', how='outer')
 
 	ax = df.plot.line(x='epoch', y=['errors LP 1: iris setosa', 
 		'errors LP 2: iris versicolor','errors LP 3: iris virginica'])

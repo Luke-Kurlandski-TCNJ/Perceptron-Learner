@@ -58,13 +58,13 @@ class Perceptron:
 		error = -1
 		name = self.targetClass + 'stats.csv'
 		if path is None:
-			file = open(name, 'a', newline='')
+			file = open(name, 'w', newline='')
 		else:
-			file = open(path, 'a', newline='')
+			file = open(path, 'w', newline='')
 		write = csv.writer(file)
 		write.writerow(["epoch", "error", "weights"])
 
-		while error != 0 and epoch < 1000:
+		while error != 0 and epoch < 100:
 			epoch += 1
 			error = 0
 			for dict in data:
