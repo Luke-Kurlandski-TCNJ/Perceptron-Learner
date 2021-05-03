@@ -48,7 +48,7 @@ def task4():
 	Setup learning environment as specified for task 4.
 	"""
 	
-	weights = [0,0,0,0]
+	weights = [0,0,0,0,0]
 	data = process_iris_data(path='iris.data')
 	task = 4
 
