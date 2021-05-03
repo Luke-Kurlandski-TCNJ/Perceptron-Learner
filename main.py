@@ -69,14 +69,20 @@ def task2():
 	"""
 	Setup learning environment as specified for task 2.
 	"""
-	
+	with open('iris.data', 'r') as sampleData:
+		data = sampleData.readlines()
+	#created 3 arrays of data for petals 
+	#cannot implement further until function declarations of perceptrons are created
+	iris_setosa = data[1:50]
+	iris_versicolor = data[50:100]
+	iris_virginica = data[100:150]
+
 	pass
 
 def main():
 	"""
 	
-	"""
-
+	""" 
 	pass
 
 if __name__ == "__main__":
