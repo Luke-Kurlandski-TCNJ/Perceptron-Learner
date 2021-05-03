@@ -31,6 +31,8 @@ try:
 	import pandas as pd
 except ModuleNotFoundError:
 	print("Warning: 'pandas' library not installed for plotting.py")
+except Exception:
+	print("Just being cautious about this business.")
 
 def errors_vs_epochs(in1, in2, in3, output_path):
 	"""
