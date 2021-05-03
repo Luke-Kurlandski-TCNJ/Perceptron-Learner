@@ -48,17 +48,17 @@ def errors_vs_epochs(in1, in2, in3, output_path):
 		The csv files should have columns: 'epoch','errors','weights'
 	"""
 
-	df1 = pd.read_csv(in1, usecols=['epoch','errors'])
-	df2 = pd.read_csv(in2, usecols=['epoch','errors'])
-	df3 = pd.read_csv(in3, usecols=['epoch','errors'])
+	df1 = pd.read_csv(in1, usecols=['epoch','error'])
+	df2 = pd.read_csv(in2, usecols=['epoch','error'])
+	df3 = pd.read_csv(in3, usecols=['epoch','error'])
 
-	df1 = df1.rename(columns={"errors": "errors LP 1: iris setosa"})
-	df2 = df2.rename(columns={"errors": "errors LP 2: iris versicolor"})
-	df3 = df3.rename(columns={"errors": "errors LP 3: iris virginica"})
+	df1 = df1.rename(columns={"error": "errors LP 1: iris setosa"})
+	df2 = df2.rename(columns={"error": "errors LP 2: iris versicolor"})
+	df3 = df3.rename(columns={"error": "errors LP 3: iris virginica"})
 
 	df = pd.merge(pd.merge(df1, df2, on='epoch'), df3, on='epoch')
 
-	ax = df.plot.line(x='epoch', y=['errors LP 1: iris setos', 
+	ax = df.plot.line(x='epoch', y=['errors LP 1: iris setosa', 
 		'errors LP 2: iris versicolor','errors LP 3: iris virginica'])
 	ax.set_xlabel("epoch")
 	ax.set_ylabel("# errors")
