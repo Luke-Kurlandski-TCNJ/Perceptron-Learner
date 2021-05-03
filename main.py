@@ -52,7 +52,7 @@ def main():
 	#print(process_iris_data())
 	
 	p1 = Perceptron("Iris-setosa")
-	p.fit(data[0])
+	p1.fit(data[0])
 
 if __name__ == "__main__":
 	main()
